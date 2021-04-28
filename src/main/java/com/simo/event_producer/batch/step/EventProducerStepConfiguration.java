@@ -5,10 +5,8 @@ import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
-import org.springframework.batch.item.xml.StaxEventItemWriter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.transaction.PlatformTransactionManager;
 
 import com.simo.event_producer.domain.Event;
 
@@ -26,15 +24,14 @@ public class EventProducerStepConfiguration {
 	
 	private final ItemReader<Event> eventProduceritemReader;
 	
-	private final PlatformTransactionManager transactionManager;
+	//private final PlatformTransactionManager transactionManager;
 	
 	
 	@Bean(name = STEP_NAME)
 	public Step stepConfig() {
 		return stepBuilderFactory
 			   .get(STEP_NAME)
-			   .transactionManager(transactionManager)
-			   .<Event,Event>chunk(5)
+			   .<Event,Event>chunk(4)
 			   .reader(eventProduceritemReader)
 			   .writer(eventProduceritemWriter)
 			   .build();

@@ -15,17 +15,32 @@ public class EventProducerItemWriter {
 	
 	private static final String WRITER_NAME = "EventProducerWriter";
 	
-	@Bean(name = WRITER_NAME)
+	/*@Bean(name = WRITER_NAME)
 	public StaxEventItemWriter<Event> itemWriterConfig(){
 		StaxEventItemWriter<Event> staxEventItemWriter = new StaxEventItemWriter<>();
-		staxEventItemWriter.setResource(new FileSystemResource(new File("result.xml")));
+		staxEventItemWriter.setResource(new FileSystemResource(new File("results/result.xml")));
 		Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
 		marshaller.setClassesToBeBound(Event.class);
 		staxEventItemWriter.setMarshaller(marshaller);
 		staxEventItemWriter.setName(WRITER_NAME);
 		staxEventItemWriter.setVersion("1.0");
-		//staxEventItemWriter.setRootTagName("events");
+		staxEventItemWriter.setRootTagName("events");
+		return staxEventItemWriter;
+	}*/
+	
+	@Bean(name = WRITER_NAME)
+	public StaxEventItemWriter<Event> itemWriter1Config(){
+		StaxEventItemWriter<Event> staxEventItemWriter = new StaxEventItemWriter<>();
+		//staxEventItemWriter.setResource(new FileSystemResource(new File("results/result.xml")));
+		Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
+		marshaller.setClassesToBeBound(Event.class);
+		staxEventItemWriter.setMarshaller(marshaller);
+		staxEventItemWriter.setName(WRITER_NAME);
+		staxEventItemWriter.setVersion("1.0");
+		staxEventItemWriter.setRootTagName("events");
 		return staxEventItemWriter;
 	}
+	
+	
 
 }
