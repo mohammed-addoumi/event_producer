@@ -39,6 +39,12 @@
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<!-- H2 Database for test -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -74,6 +80,19 @@
 		    <groupId>org.glassfish.jaxb</groupId>
 		    <artifactId>jaxb-runtime</artifactId>
 		    </dependency>
+		    
+		<!-- https://mvnrepository.com/artifact/net.java.dev.stax-utils/stax-utils -->
+		<dependency>
+			<groupId>net.java.dev.stax-utils</groupId>
+			<artifactId>stax-utils</artifactId>
+			<version>20070216</version>
+			<exclusions>
+			 <exclusion>    
+			      <groupId>com.bea.xml</groupId>
+			      <artifactId>jsr173-ri</artifactId>
+			 </exclusion>
+			</exclusions>
+		</dependency>
 	</dependencies>
 
 	<build>

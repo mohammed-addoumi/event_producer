@@ -2,7 +2,6 @@ package com.simo.event_producer.batch.writer;
 
 import java.io.File;
 
-import org.springframework.batch.item.xml.StaxEventItemWriter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
@@ -14,33 +13,35 @@ import com.simo.event_producer.domain.Event;
 public class EventProducerItemWriter {
 	
 	private static final String WRITER_NAME = "EventProducerWriter";
+
 	
-	/*@Bean(name = WRITER_NAME)
-	public StaxEventItemWriter<Event> itemWriterConfig(){
-		StaxEventItemWriter<Event> staxEventItemWriter = new StaxEventItemWriter<>();
-		staxEventItemWriter.setResource(new FileSystemResource(new File("results/result.xml")));
+	@Bean(name = WRITER_NAME,destroyMethod = "")
+	public CustomStaxEventItemWriter<Event> itemWriter1Config(){
+		CustomStaxEventItemWriter<Event> ItemWriter = new CustomStaxEventItemWriter<>();
+		ItemWriter.setResource(new FileSystemResource(new File("results/result.xml")));
 		Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
 		marshaller.setClassesToBeBound(Event.class);
-		staxEventItemWriter.setMarshaller(marshaller);
-		staxEventItemWriter.setName(WRITER_NAME);
-		staxEventItemWriter.setVersion("1.0");
-		staxEventItemWriter.setRootTagName("events");
-		return staxEventItemWriter;
-	}*/
-	
-	@Bean(name = WRITER_NAME)
-	public StaxEventItemWriter<Event> itemWriter1Config(){
-		StaxEventItemWriter<Event> staxEventItemWriter = new StaxEventItemWriter<>();
-		//staxEventItemWriter.setResource(new FileSystemResource(new File("results/result.xml")));
-		Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
-		marshaller.setClassesToBeBound(Event.class);
-		staxEventItemWriter.setMarshaller(marshaller);
-		staxEventItemWriter.setName(WRITER_NAME);
-		staxEventItemWriter.setVersion("1.0");
-		staxEventItemWriter.setRootTagName("events");
-		return staxEventItemWriter;
+		ItemWriter.setMarshaller(marshaller);
+		ItemWriter.setName(WRITER_NAME);
+		ItemWriter.setVersion("1.0");
+		ItemWriter.setRootTagName("events");
+		return ItemWriter;
 	}
 	
+	/*@Bean(name = WRITER_NAME)
+	public JdbcBatchItemWriter<Event> itemWriterConfig(DataSource dataSource,NamedParameterJdbcTemplate jdbcTemplate){
+		JdbcBatchItemWriter<Event> itemWriter = new JdbcBatchItemWriter<Event>();
+		itemWriter.setDataSource(dataSource);
+		BeanPropertyItemSqlParameterSourceProvider<Event> provider = new BeanPropertyItemSqlParameterSourceProvider<Event>();
+		itemWriter.setSql("INSERT INTO event_duplicate(id,name,event_type,status) VALUES(:id,:name,:event_type,:status)");
+		itemWriter.setJdbcTemplate(jdbcTemplate);
+		itemWriter.setItemSqlParameterSourceProvider(provider);
+		return itemWriter;
+	}
 	
-
-}
+    @Bean(name ="namedParameterJdbcTemplate" )
+    NamedParameterJdbcTemplate jdbcTemplate(DataSource dataSource) {
+        return new NamedParameterJdbcTemplate(dataSource);
+    }*/
+	}
+	

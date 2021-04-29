@@ -2,6 +2,8 @@ package com.simo.event_producer;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParameters;
@@ -41,6 +43,6 @@ class EventProducerApplicationTests {
 	
 	@Test
 	public void SHOULD_CREATE_RESULT_FILE_WITH_CONTENT_OF_EVENT_TABLE() throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
-		jobLauncher.run(job, new JobParametersBuilder().toJobParameters());
+		jobLauncher.run(job, new JobParametersBuilder().addString("date-time", LocalDate.now().toString()).toJobParameters());
 	}
 }

@@ -20,6 +20,8 @@ public class EventProducerJobConfiguration {
 	
 	private final JobBuilderFactory jobBuilderFactory;
 	
+	
+	
 	private final Step step;
 	
 	@Bean(name = JOB_NAME)
