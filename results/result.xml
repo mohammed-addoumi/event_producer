@@ -1,26 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<events>
-  <event>
-    <event_type>INSERT</event_type>
-    <id>1</id>
-    <name>event1</name>
-    <status>INITIATED</status>
-  </event>
-  <event>
-    <event_type>UPDATE</event_type>
-    <id>2</id>
-    <name>event2</name>
-    <status>INITIATED</status>
-  </event>
-  <event>
-    <event_type>DELETE</event_type>
-    <id>3</id>
-    <name>event3</name>
-    <status>INITIATED</status>
-  </event><event>
-    <event_type>UPDATE</event_type>
-    <id>4</id>
-    <name>event4</name>
-    <status>INITIATED</status>
-  </event>
- </events>
+<events></events>

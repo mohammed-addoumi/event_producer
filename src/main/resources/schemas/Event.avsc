@@ -1,0 +1,26 @@
+{
+  "namespace": "com.simo.event_producer.domain",
+  "type": "record",
+  "name": "Event",
+  "fields": [
+    {
+      "name": "name",
+      "type": "string",
+      "avro.java.string": "String"
+    },
+    {
+      "name": "id",
+      "type": "int"
+    },
+    {
+      "name": "event_type",
+      "type": "string",
+      "avro.java.string": "String"
+    },
+    {
+      "name": "status",
+       "type": "string",
+      "avro.java.string": "String"
+    }
+  ]
+}

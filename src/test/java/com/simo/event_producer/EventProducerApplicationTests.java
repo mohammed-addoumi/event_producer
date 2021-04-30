@@ -37,7 +37,7 @@ class EventProducerApplicationTests {
 	@Test
 	public void Call_COUNT_SHOULD_RETURN_4() {
 		int number_rows = jdbcTemplate.queryForObject("select count(*) from event",Integer.class);
-		assertEquals(3, number_rows);
+		assertEquals(4, number_rows);
 	}
 
 	
