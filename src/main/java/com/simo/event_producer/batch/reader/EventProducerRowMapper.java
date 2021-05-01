@@ -14,7 +14,7 @@ public class EventProducerRowMapper implements RowMapper<Event>{
 		Event event = new Event();
 		event.setId(rs.getInt("id"));
 		event.setName(rs.getString("name"));
-		event.setEventType(rs.getString("event_type"));
+		event.setEvent_type(rs.getString("event_type"));
 		event.setStatus(rs.getString("status"));
 		return event;
 	}
