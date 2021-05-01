@@ -3,8 +3,10 @@ package com.simo.event_producer.batch.writer;
 import java.io.File;
 import java.util.Arrays;
 
+import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.kafka.KafkaItemWriter;
 import org.springframework.batch.item.support.CompositeItemWriter;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
@@ -32,7 +34,8 @@ public class EventProducerItemWriter {
 	}
 	
 	@Bean(name = "compositeItemWriter",destroyMethod = "")
-	public CompositeItemWriter<Event> compositeItemWriter(KafkaItemWriter<Integer, Event> kafkaItemWriter,CustomStaxEventItemWriter<Event> itemWriter) {
+	public CompositeItemWriter<Event> compositeItemWriter(KafkaItemWriter<Integer, Event> kafkaItemWriter
+			                                              ,CustomStaxEventItemWriter<Event> itemWriter) {
 		CompositeItemWriter<Event> compositeItemWriter = new CompositeItemWriter<Event>();
 		compositeItemWriter.setDelegates(Arrays.asList(kafkaItemWriter,itemWriter));
 		return compositeItemWriter;

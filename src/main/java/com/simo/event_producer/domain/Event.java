@@ -13,7 +13,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @XmlRootElement
 public class Event {
-	
 	private int id;
 	private String name;
 	private String event_type;

@@ -21,7 +21,7 @@ public class EventProducerItemReader {
 		JdbcCursorItemReader<Event> jdbcCursorItemReader = new JdbcCursorItemReader<>();
 		
 				jdbcCursorItemReader.setDataSource(dataSource);
-				jdbcCursorItemReader.setSql("select id,name,event_type,status from event");
+				jdbcCursorItemReader.setSql("select id,name,event_type,status from event where status='INITIATED'");
 				jdbcCursorItemReader.setIgnoreWarnings(true);
 				jdbcCursorItemReader.setVerifyCursorPosition(true);	
 				jdbcCursorItemReader.setRowMapper(new EventProducerRowMapper());
